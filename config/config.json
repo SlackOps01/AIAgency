@@ -1,0 +1,11 @@
+{
+    "manager_agent": {
+        "model": "openrouter/free"
+    },
+    "legal_agent": {
+        "model": "openrouter/free"
+    },
+    "research_agent": {
+        "model": "openrouter/free"
+    }
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+            background-color: #F6F0E2;
+        }
+
+        body {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 12pt;
+            line-height: 1.6;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        .document-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .document-title {
+            font-size: 14pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0 0 10px 0;
+        }
+
+        .document-date {
+            font-size: 11pt;
+        }
+
+        /* Sections */
+        h2 {
+            font-size: 12pt;
+            font-weight: bold;
+            margin: 20px 0 10px 0;
+            text-transform: uppercase;
+        }
+
+        p {
+            margin: 0 0 12px 0;
+            text-align: justify;
+        }
+
+        ul,
+        ol {
+            margin: 0 0 12px 30px;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        /* Signature Section */
+        .signature-section {
+            margin-top: 60px;
+            page-break-inside: avoid;
+        }
+
+        .signature-heading {
+            font-size: 12pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .signature-row {
+            width: 100%;
+            display: table;
+            margin-top: 20px;
+        }
+
+        .signature-party {
+            display: table-cell;
+            width: 45%;
+            vertical-align: top;
+        }
+
+        .signature-party.left {
+            padding-right: 5%;
+        }
+
+        .signature-party.right {
+            padding-left: 5%;
+        }
+
+        .signature-line {
+            border-bottom: 1px solid #000;
+            height: 50px;
+            margin-bottom: 5px;
+        }
+
+        .signature-label {
+            font-size: 11pt;
+            margin-bottom: 3px;
+        }
+
+        .signature-name {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        .signature-title {
+            font-size: 10pt;
+            color: #333;
+        }
+
+        .date-line {
+            margin-top: 15px;
+        }
+
+        .date-line span {
+            border-bottom: 1px solid #000;
+            display: inline-block;
+            width: 150px;
+            margin-left: 5px;
+        }
+
+        /* Footer */
+        .document-footer {
+            margin-top: 40px;
+            padding-top: 10px;
+            border-top: 1px solid #ccc;
+            text-align: center;
+            font-size: 9pt;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="document-header">
+        <h1 class="document-title">{{ title }}</h1>
+        <div class="document-date">{{ date }}</div>
+    </div>
+
+    <div class="document-body">
+        {{ content | safe }}
+    </div>
+
+    <div class="document-footer">
+        This document was generated automatically.
+    </div>
+</body>
+
+</html>
