@@ -97,7 +97,17 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 ADMIN_USERNAME=admin
 ADMIN_PASSWORD=your_secure_password_here
 ADMIN_EMAIL=admin@example.com
+
+# Database Configuration
+DB_URL=sqlite:///./test.db
+
+# Redis Configuration
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_URL=redis://localhost:6379/0
 ```
+
+**Admin bootstrap:** `app/main.py` calls `app.scripts.admin.create_admin()` on startup to ensure the admin user from the `ADMIN_*` settings exists.
 
 **To generate a secure SECRET_KEY:**
 ```bash
@@ -132,6 +142,8 @@ The API will be available at:
 ```bash
 celery -A app.tasks.tasks worker --loglevel=info
 ```
+
+Celery uses `REDIS_URL` for the broker and result backend.
 
 ### Terminal 3: (Optional) Monitor Celery Tasks
 
@@ -234,6 +246,8 @@ AIAgency/
 
 ## 🔐 Authentication Flow
 
+Passwords are hashed and verified with bcrypt via `app/scripts/hashing.py`.
+
 1. **Login** to get access token:
 ```bash
 curl -X POST "http://localhost:8000/api/v1/auth/login" \
@@ -283,7 +297,7 @@ curl -X POST "http://localhost:8000/run-agent" \
 
 ### Database Migrations
 
-The application automatically creates database tables on startup. To reset the database:
+The application automatically creates database tables on startup. If you are using SQLite (for example, `DB_URL=sqlite:///./test.db`) and need to reset the database:
 
 ```bash
 rm test.db
